@@ -20,61 +20,68 @@ abstract class Animal {
 }
 
 class Mammal extends Animal implements Feedable {
-    private String diet;
-    private String sound;
+    private String diet, sound, type;
 
-    public Mammal(String name, int age, String diet, String sound) {
+    public Mammal(String name, int age, String diet, String sound, String type) {
         super(name, age);
         this.diet = diet;
         this.sound = sound;
+        this.type = type;
     }
 
     public void eat() { System.out.println(name + " eats: " + diet); }
     public void makeSound() { System.out.println(name + " says: " + sound); }
     public void move() { System.out.println(name + " moves like a mammal."); }
+    public String getType() { return type; }
 }
 
 class Reptile extends Animal implements Feedable {
-    private String diet;
-    private String sound;
+    private String diet, sound, type;
 
-    public Reptile(String name, int age, String diet, String sound) {
+    public Reptile(String name, int age, String diet, String sound, String type) {
         super(name, age);
         this.diet = diet;
         this.sound = sound;
+        this.type = type;
     }
 
     public void eat() { System.out.println(name + " eats: " + diet); }
     public void makeSound() { System.out.println(name + " says: " + sound); }
     public void move() { System.out.println(name + " crawls like a reptile."); }
+    public String getType() { return type; }
 }
 
-class Bird extends Animal implements Feedable {
-    private String diet;
-    private String sound;
 
-    public Bird(String name, int age, String diet, String sound) {
+class Bird extends Animal implements Feedable {
+    private String diet, sound, type;
+
+    public Bird(String name, int age, String diet, String sound, String type) {
         super(name, age);
         this.diet = diet;
         this.sound = sound;
+        this.type = type;
     }
 
     public void eat() { System.out.println(name + " eats: " + diet); }
     public void makeSound() { System.out.println(name + " says: " + sound); }
     public void move() { System.out.println(name + " flies like a bird."); }
+    public String getType() { return type; }
 }
 
-class Amphibian extends Animal implements Feedable {
-    private String diet;
-    private String sound;
 
-    public Amphibian(String name, int age, String diet, String sound) {
+class Amphibian extends Animal implements Feedable {
+    private String diet, sound, type;
+
+    public Amphibian(String name, int age, String diet, String sound, String type) {
         super(name, age);
         this.diet = diet;
         this.sound = sound;
+        this.type = type;
     }
 
     public void eat() { System.out.println(name + " eats: " + diet); }
     public void makeSound() { System.out.println(name + " says: " + sound); }
     public void move() { System.out.println(name + " hops like an amphibian."); }
+    public String getType() { return type; }
 }
+

@@ -4,25 +4,34 @@ import java.util.*;
 class Zookeeper {
     private String name;
 
-    public Zookeeper(String name) { this.name = name; }
+    public Zookeeper(String name) {
+        this.name = name;
+    }
 
     public void feedAnimal(Animal animal) {
-        if (animal instanceof Feedable) {
-            ((Feedable) animal).eat();
+        if (animal instanceof Feedable f) {
+            f.eat();
         } else {
             System.out.println(animal.getInfo() + " cannot be fed.");
         }
     }
 }
+
 class Enclosure {
     private String name;
     private List<Animal> animals = new ArrayList<>();
 
-    public Enclosure(String name) { this.name = name; }
+    public Enclosure(String name) {
+        this.name = name;
+    }
 
-    public void addAnimal(Animal animal) { animals.add(animal); }
-    public List<Animal> getAnimals() { return animals; }
     public String getName() { return name; }
+
+    public void addAnimal(Animal animal) {
+        animals.add(animal);
+    }
+
+    public List<Animal> getAnimals() { return animals; }
 
     public void listAnimals() {
         for (Animal a : animals) {
@@ -31,15 +40,20 @@ class Enclosure {
     }
 }
 
+
 class Zoo {
     private List<Enclosure> enclosures = new ArrayList<>();
     private Zookeeper currentUser;
     private Stack<Animal> recentInteractions = new Stack<>();
     private List<Appointment> appointments = new ArrayList<>();
 
-    public Zoo(Zookeeper keeper) { this.currentUser = keeper; }
+    public Zoo(Zookeeper keeper) {
+        this.currentUser = keeper;
+    }
 
-    public void addEnclosure(Enclosure enclosure) { enclosures.add(enclosure); }
+    public void addEnclosure(Enclosure enclosure) {
+        enclosures.add(enclosure);
+    }
 
     public void addAnimalToEnclosure(Animal animal, String enclosureName) {
         for (Enclosure e : enclosures) {
@@ -57,7 +71,13 @@ class Zoo {
         for (Enclosure e : enclosures) {
             System.out.println("Enclosure: " + e.getName());
             for (Animal a : e.getAnimals()) {
-                System.out.println("  [" + index + "] " + a.getInfo());
+                String type = "";
+                if (a instanceof Mammal m) type = m.getType();
+                else if (a instanceof Reptile r) type = r.getType();
+                else if (a instanceof Bird b) type = b.getType();
+                else if (a instanceof Amphibian am) type = am.getType();
+
+                System.out.println("  [" + index + "] " + a.getInfo() + " - Type: " + type);
                 index++;
             }
         }
@@ -73,6 +93,7 @@ class Zoo {
         }
         return null;
     }
+
     public Animal getAnimalByName(String name) {
         for (Enclosure e : enclosures) {
             for (Animal a : e.getAnimals()) {
@@ -124,6 +145,8 @@ class Zoo {
         }
     }
 }
+
+
 class Appointment {
     private String animalName, purpose, time;
 
@@ -137,4 +160,5 @@ class Appointment {
         return "Appointment for " + animalName + " at " + time + " - Purpose: " + purpose;
     }
 }
+
 
